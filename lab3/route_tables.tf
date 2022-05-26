@@ -13,12 +13,12 @@ resource "aws_route_table" "igw_route_table" {
 
 resource "aws_route_table_association" "public_subnet_1_to_igw" {
   route_table_id = aws_route_table.igw_route_table.id
-  subnet_id = aws_subnet.public_subnet_1.id
+  subnet_id      = aws_subnet.public_subnet_1.id
 }
 
 resource "aws_route_table_association" "public_subnet_2_to_igw" {
   route_table_id = aws_route_table.igw_route_table.id
-  subnet_id = aws_subnet.public_subnet_2.id
+  subnet_id      = aws_subnet.public_subnet_2.id
 
 }
 
@@ -28,36 +28,36 @@ resource "aws_route_table_association" "public_subnet_2_to_igw" {
 resource "aws_route_table" "route_table_nat_1" {
   vpc_id = aws_vpc.vpc.id
   route {
-      cidr_block = "0.0.0.0/0"
-      nat_gateway_id = aws_nat_gateway.nat_gateway1.id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gateway1.id
   }
 }
 
 resource "aws_route_table" "route_table_nat_2" {
   vpc_id = aws_vpc.vpc.id
   route {
-      cidr_block = "0.0.0.0/0"
-      nat_gateway_id = aws_nat_gateway.nat_gateway2.id
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gateway2.id
   }
 }
 
 #asociar subnets a tabla de nat
 resource "aws_route_table_association" "private_subnet_1a_to_nat" {
   route_table_id = aws_route_table.route_table_nat_1.id
-  subnet_id = aws_subnet.private_subnet_1a.id
+  subnet_id      = aws_subnet.private_subnet_1a.id
 }
 
 resource "aws_route_table_association" "private_subnet_1b_to_nat" {
   route_table_id = aws_route_table.route_table_nat_1.id
-  subnet_id = aws_subnet.private_subnet_1b.id
+  subnet_id      = aws_subnet.private_subnet_1b.id
 }
 resource "aws_route_table_association" "private_subnet_2a_to_nat" {
   route_table_id = aws_route_table.route_table_nat_2.id
-  subnet_id = aws_subnet.private_subnet_2a.id
+  subnet_id      = aws_subnet.private_subnet_2a.id
 }
 resource "aws_route_table_association" "private_subnet_2b_to_nat" {
   route_table_id = aws_route_table.route_table_nat_2.id
-  subnet_id = aws_subnet.private_subnet_2b.id
+  subnet_id      = aws_subnet.private_subnet_2b.id
 }
 
 
