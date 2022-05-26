@@ -9,7 +9,7 @@ resource "aws_security_group" "webserver_sg" {
     cidr_blocks = ["0.0.0.0/0"]
   }
   ingress {
-    description = "Allow SSH connections"
+    description = "allow SSH connections"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -55,6 +55,12 @@ resource "aws_security_group" "sqlserver_sg" {
     protocol    = "tcp"
     cidr_blocks = ["10.0.1.0/24"]
   }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 
@@ -67,5 +73,12 @@ resource "aws_security_group" "bastion_sg" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
 }
