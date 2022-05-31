@@ -6,6 +6,7 @@ resource "aws_instance" "bastion1" {
   subnet_id              = aws_subnet.public_subnet_1.id
   key_name               = aws_key_pair.kp.key_name
   vpc_security_group_ids = [aws_security_group.bastion_security_group.id]
+  associate_public_ip_address = true
   tags = {
     Name = "Bastion AZ 1"
   }
@@ -19,6 +20,7 @@ resource "aws_instance" "bastion2" {
   subnet_id              = aws_subnet.public_subnet_2.id
   key_name               = aws_key_pair.kp.key_name
   vpc_security_group_ids = [aws_security_group.bastion_security_group.id]
+  associate_public_ip_address = true
   tags = {
     Name = "Bastion AZ 2"
   }
